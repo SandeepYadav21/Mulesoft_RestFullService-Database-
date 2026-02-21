@@ -28,3 +28,24 @@ HTTP response body:
 	"status": 200,
 	"message": "Success"
 }
+
+**Second Project: (update-employee.xml)**
+- create a Mule rest service to update to database.
+- Read XML fields from mule event XML payload.
+- Update fields into database table.
+
+URL: http://localhost:8091/emp-sapi/update-employee (PUT)
+
+HTTP Request Body:
+<?xml version="1.0" encoding="UTF-8"?>
+<employee>
+    <employeeID>100</employeeID>
+    <employeeStatus>I</employeeStatus>
+</employee>
+
+HTTP Response Body: Http response header: 200, OK
+<?xml version='1.0' encoding='UTF-8'?>
+<response>
+    <status>200</status>
+    <message>Success</message>
+</response>
