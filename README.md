@@ -5,9 +5,9 @@
 - Read JSON fields from mule event JSON payload.
 - Insert fields into database table.
 
-**URL:** http://localhost:8081/emp-sapi/create-employee (POST)
+URL: http://localhost:8081/emp-sapi/create-employee (POST)
 
-**HTTP request body:**
+HTTP request body:
 [
 	{
 	  "employeeID": 100,
@@ -21,9 +21,9 @@
 	}
 ]
 
-**HTTP response header:** 200, success
+HTTP response header: 200, success
 
-**HTTP response body:**
+HTTP response body:
 {
 	"status": 200,
 	"message": "Success"
