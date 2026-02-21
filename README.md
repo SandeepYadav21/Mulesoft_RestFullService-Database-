@@ -1,7 +1,6 @@
 # Mulesoft_RestFullService-Database-
-======================
+
 **First Project:**
-======================
 - create a rest service.
 - Read JSON fields from mule event JSON payload.
 - Insert fields into database table.
