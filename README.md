@@ -5,7 +5,9 @@
 - create a rest service.
 - Read JSON fields from mule event JSON payload.
 - Insert fields into database table.
+
 **URL:** http://localhost:8081/emp-sapi/create-employee (POST)
+
 **HTTP request body:**
 [
 	{
