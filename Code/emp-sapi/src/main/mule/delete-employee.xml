@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:ee="http://www.mulesoft.org/schema/mule/ee/core" xmlns:db="http://www.mulesoft.org/schema/mule/db"
+	xmlns:http="http://www.mulesoft.org/schema/mule/http"
+	xmlns="http://www.mulesoft.org/schema/mule/core" xmlns:doc="http://www.mulesoft.org/schema/mule/documentation" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd
+http://www.mulesoft.org/schema/mule/db http://www.mulesoft.org/schema/mule/db/current/mule-db.xsd
+http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/ee/core/current/mule-ee.xsd">
+	<flow name="delete-employeeFlow" doc:id="951d2f26-f0e9-4501-bd30-daf746f13233" >
+		<http:listener doc:name="Listener" doc:id="f45cfe12-31a3-4e63-ad63-1e74849165ec" config-ref="HTTP_Listener_config" path="delete-employee/{employeeID}/{employeeName}" allowedMethods="DELETE"/>
+		<logger level="INFO" doc:name="Start Log" doc:id="cc83fe65-0090-48d8-b6f6-f2cae789db75" message="Delete employee flow started"/>
+		<db:stored-procedure doc:name="Call Delete Employee Stored procedure" doc:id="0202ca92-d289-4b13-8a34-28601037e59e" config-ref="Database_Config">
+			<db:sql ><![CDATA[{CALL delete_emp(:empID, :empName)}]]></db:sql>
+			<db:input-parameters ><![CDATA[#[{
+	empID:attributes.uriParams.employeeID,
+	empName:attributes.uriParams.employeeName
+}]]]></db:input-parameters>
+		</db:stored-procedure>
+		<ee:transform doc:name="Set Response" doc:id="5220dd67-b05b-43f2-aa01-bafe4d47c96a" >
+			<ee:message >
+				<ee:set-payload ><![CDATA[%dw 2.0
+output application/json
+---
+{
+	"status":200,
+	"message":"success"
+	
+}]]></ee:set-payload>
+			</ee:message>
+		</ee:transform>
+		<logger level="INFO" doc:name="End Log" doc:id="28874402-5ad6-4314-8f64-69fb76bd0d70" message="Completed delete employee flow"/>
+	</flow>
+</mule>

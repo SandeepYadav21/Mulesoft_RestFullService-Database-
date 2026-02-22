@@ -1,0 +1,52 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<types:mule xmlns:types="http://www.mulesoft.org/schema/mule/types">
+  <types:catalog>
+    <types:type name="success-response" format="json">
+      <types:shape format="weave" example="examples/success-response.json"><![CDATA[%dw 2.0
+
+type success_response = {|
+  status: Number {"typeId": "int"}, 
+  message: String
+|} {"example": "{\\\"status\\\":200,\\\"message\\\":\\\"Success\\\"}"}
+
+]]></types:shape>
+    </types:type>
+    <types:type name="update-employee-response" format="xml">
+      <types:example format="xml" element="response" location="examples/update-employee-response.xml"/>
+    </types:type>
+    <types:type name="get-employees-response" format="json">
+      <types:shape format="weave" example="examples/get-employees-response.json"><![CDATA[%dw 2.0
+
+type get_employees_response = Array<{|  employeeID: Number {"typeId": "int"},   employeeName: String,   employeeStatus: String|}> {"example": "[{\\\"employeeID\\\":100,\\\"employeeName\\\":\\\"Chinna\\\",\\\"employeeStatus\\\":\\\"A\\\"},{\\\"employeeID\\\":101,\\\"employeeName\\\":\\\"John\\\",\\\"employeeStatus\\\":\\\"A\\\"}]"}
+
+]]></types:shape>
+    </types:type>
+  </types:catalog>
+  <types:enrichment select="#f931a316-fdb4-48c4-b4ff-f6da84ac1e94">
+    <types:processor-declaration>
+      <types:output-event>
+        <types:message>
+          <types:payload type="success-response"/>
+        </types:message>
+      </types:output-event>
+    </types:processor-declaration>
+  </types:enrichment>
+  <types:enrichment select="#1364ecf6-8549-41c9-a36e-b890b94bf43c">
+    <types:processor-declaration>
+      <types:output-event>
+        <types:message>
+          <types:payload type="update-employee-response"/>
+        </types:message>
+      </types:output-event>
+    </types:processor-declaration>
+  </types:enrichment>
+  <types:enrichment select="#ccb24ce2-311a-4970-8a43-fa4c7481af3f">
+    <types:processor-declaration>
+      <types:output-event>
+        <types:message>
+          <types:payload type="get-employees-response"/>
+        </types:message>
+      </types:output-event>
+    </types:processor-declaration>
+  </types:enrichment>
+</types:mule>

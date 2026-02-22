@@ -1,0 +1,31 @@
+create database mulesoft;
+
+use mulesoft;
+
+CREATE TABLE emp (
+  emp_id INT(10),
+  emp_name VARCHAR(50),
+  emp_status VARCHAR(10)
+);
+ALTER TABLE emp
+ADD PRIMARY KEY (emp_id);
+
+select * from emp;
+SHOW CREATE TABLE emp;
+
+#Stored Procedure creation to delet the employee record:
+DELIMITER //
+CREATE PROCEDURE delete_emp (
+    IN p_id INT,
+    IN p_name VARCHAR(50)
+)
+BEGIN
+    DELETE FROM emp
+    WHERE emp_id = p_id
+      AND emp_name = p_name;
+END //
+DELIMITER ;
+
+CALL delete_emp(100, 'Sandeep');
+
+
