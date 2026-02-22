@@ -30,6 +30,7 @@ HTTP response body:
 	"message": "Success"
 }
 
+
 **Second Project: (update-employee.xml)**
 - create a Mule rest service to update to database.
 - Read XML fields from mule event XML payload.
@@ -52,6 +53,7 @@ HTTP Response Body: Http response header: 200, OK
     <message>Success</message>
 </response>
 
+
 **Third Project: (get-employee-by-id.xml)**
 
 - Mule rest service to fetch from database.
@@ -69,6 +71,7 @@ HTTP Response Body:
 	"employeeName": "Sandeep",
 	"employeeStatus": "A"
 }
+
 
 **Fourth Project: (get-employees.xml)**
 
@@ -94,6 +97,7 @@ HTTP Response Body:
 	  "employeeStatus": "A"
 	}
 ]
+
 
 **Fifth Project: (delete-employee.xml)**
 
